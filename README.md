@@ -1,0 +1,1 @@
+Nixos + Home-manager config

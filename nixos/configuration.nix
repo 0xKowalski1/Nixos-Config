@@ -106,7 +106,7 @@
     ];
   };
 
-  home-manager.users.kowalski = { pkg, ...}:{
+  home-manager.users.kowalski = { pkgs, ...}:{
     home.packages =  with pkgs; [
     	git
 	neovim

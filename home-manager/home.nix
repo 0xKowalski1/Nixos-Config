@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  programs.home-manager.enable = true;
+
   programs.git = {
     enable = true;
     userName = "0xkowalski1";

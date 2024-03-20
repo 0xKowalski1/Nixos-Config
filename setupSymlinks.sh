@@ -12,8 +12,8 @@ fi
 
 # Create symlinks for NixOS and Home Manager configurations
 sudo ln -sf "${REPO_PATH}/nixos/configuration.nix" /etc/nixos/configuration.nix
-ln -sf "${REPO_PATH}/home-manager/home.nix" "${HOME}/.config/nixpkgs/home.nix"
+ln -sf "${REPO_PATH}/home-manager/home.nix" "${HOME}/.config/home-manager/home.nix"
 
 echo "Symlinks for NixOS and Home Manager configurations have been created in the following locations:"
 echo "NixOS: ${REPO_PATH}/nixos/configuration.nix -> /etc/nixos/configuration.nix"
-echo "Home Manager: ${REPO_PATH}/home-manager/home.nix -> ${HOME}/.config/nixpkgs/home.nix"
+echo "Home Manager: ${REPO_PATH}/home-manager/home.nix -> ${HOME}/.config/home-manager/home.nix"

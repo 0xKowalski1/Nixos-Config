@@ -3,6 +3,10 @@
 {
   programs.home-manager.enable = true;
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+             "discord"
+  ];
+
   programs.git = {
     enable = true;
     userName = "0xkowalski1";

@@ -47,13 +47,13 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
   
+  # Bin off all the gnome bloat
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
   ]) ++ (with pkgs.gnome; [
     cheese # webcam tool
     gnome-music
-    gnome-terminal
     gedit # text editor
     epiphany # web browser
     geary # email reader
@@ -72,13 +72,12 @@
     yelp
     gnome-clocks
   ]);
-  
- 
+
   # GPU
   hardware.opengl = {
-  enable = true;
-  driSupport = true;
-  driSupport32Bit = true;
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -103,8 +102,7 @@
   services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
 
   users.users.kowalski = {
     isNormalUser = true;
@@ -115,6 +113,5 @@
 
   # DO NOT CHANGE
   system.stateVersion = "23.11";
-
 }
 

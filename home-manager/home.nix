@@ -30,6 +30,7 @@ in {
 	steam
 	desktop-file-utils
 	ripgrep
+    alacritty
   ];
 
   home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -56,7 +57,19 @@ in {
    enable = true;
   };
 
-  
+  dconf.settings = {
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "Open Terminal";
+        command = "alacritty";
+        binding = "<Ctrl><Alt>t";
+      };
+  };
+ 
   # DONT CHANGE
   home.stateVersion = "23.11";
 }

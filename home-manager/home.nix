@@ -33,6 +33,9 @@ in {
     alacritty
     gnome.dconf-editor
     xclip
+    nodejs
+    slither-analyzer
+    solc-select
   ];
 
   home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''

@@ -46,7 +46,7 @@
   # Autologin bug workaround
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
-  
+
   # Bin off all the gnome bloat
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos

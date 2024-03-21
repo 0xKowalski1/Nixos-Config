@@ -30,15 +30,18 @@ in {
 	steam
 	desktop-file-utils
 	ripgrep
-    alacritty
-    gnome.dconf-editor
-    xclip
-    nodejs
-    slither-analyzer
-    solc-select
-    nodePackages.vercel
-  ];
+        alacritty
+        gnome.dconf-editor
+        xclip
+        nodejs
+        slither-analyzer
+        solc-select
+        nodePackages.vercel
+        gnome.gnome-tweaks
+        gnomeExtensions.gtile
 
+  ];
+  
   home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
     ${cloneNvimConfig}
   '';

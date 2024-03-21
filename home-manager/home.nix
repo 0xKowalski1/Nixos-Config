@@ -36,6 +36,7 @@ in {
     nodejs
     slither-analyzer
     solc-select
+    nodePackages.vercel
   ];
 
   home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''

@@ -32,6 +32,7 @@ in {
 	ripgrep
     alacritty
     gnome.dconf-editor
+    xclip
   ];
 
   home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''

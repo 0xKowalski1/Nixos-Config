@@ -49,7 +49,9 @@ in {
         nodePackages.vercel
         gnome.gnome-tweaks
         gnomeExtensions.gtile
+        python3
         evince
+        mdcat
   ];
 
 

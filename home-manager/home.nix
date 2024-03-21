@@ -52,6 +52,10 @@ in {
         python3
         evince
         mdcat
+        pandoc
+        texliveFull
+        feh
+        cloc
   ];
 
 

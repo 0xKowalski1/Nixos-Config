@@ -26,8 +26,15 @@
   #  useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # Enable the X11 windowing system.  
+  services.xserver = {
+    enable = true;
+    # Disable mouse acceleration
+    displayManager.sessionCommands = lib.mkBefore ''
+      xinput --set-prop "Virtual Core Pointer" "libinput Accel Profile Enabled" 0, 1
+      xinput --set-prop "Virtual Core Pointer" "libinput Accel Speed" -1
+    '';
+  };
   
   # Gnome
   services.xserver.displayManager.gdm.enable = true;

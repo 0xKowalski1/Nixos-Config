@@ -31,6 +31,7 @@ in {
 	desktop-file-utils
 	ripgrep
     alacritty
+    gnome.dconf-editor
   ];
 
   home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -58,6 +59,35 @@ in {
   };
 
   dconf.settings = {
+      "org/gnome/shell" = {
+            favorite-apps = ["discord.desktop" 
+            "spotify.desktop"
+            "brave-browser.desktop"
+            "Alacritty.desktop"];
+          };
+     "org/gnome/shell/extensions/hidetopbar" = {
+        enable-active-window = false;
+        enable-intellihide = false; 
+      };
+      "org/gnome/desktop/interface" = {
+        clock-show-seconds = false;
+        clock-show-weekday = false;
+        color-scheme = "prefer-dark";
+        enable-hot-corners = false;
+        font-antialiasing = "grayscale";
+        font-hinting = "slight";
+        gtk-theme = "Nordic";
+        toolkit-accessibility = false;
+      };
+
+      "org/gnome/desktop/wm/keybindings" = {
+          toggle-fullscreen = ["f11"];
+      };
+
+      "org/gnome/desktop/session" = {
+          idle-delay = 0;
+      };
+
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"

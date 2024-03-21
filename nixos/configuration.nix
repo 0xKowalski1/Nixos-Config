@@ -106,26 +106,6 @@
     ];
   };
 
-  home-manager.users.kowalski = { pkgs, ...}:{
-   nixpkgs.config.allowUnfree = true;
-
-    home.packages =  with pkgs; [
-    	git
-	neovim
-	brave
-	htop
-	discord
-	spotify
-	steam
-	home-manager
-	desktop-file-utils
-    ];
-    programs.bash.enable = true;
-
-    # DONT CHANGE
-    home.stateVersion = "23.11";
-  };
-
   # DO NOT CHANGE
   system.stateVersion = "23.11";
 

@@ -49,6 +49,7 @@ in {
         nodePackages.vercel
         gnome.gnome-tweaks
         gnomeExtensions.gtile
+        evince
   ];
 
 

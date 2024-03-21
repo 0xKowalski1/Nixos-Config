@@ -11,11 +11,21 @@ let
       git clone git@github.com:0xKowalski1/Nvim-Config.git /home/kowalski/Nvim-Config
     fi
   '';
+
+    alacrittyConfig = pkgs.writeText "alacritty.yml" ''
+    font:
+      normal:
+        family: 'FiraCode Nerd Font Mono'
+        style: Regular
+      size: 12.0
+  '';
 in {
   programs.home-manager.enable = true;
 
   home.username = "kowalski";
   home.homeDirectory = "/home/kowalski";
+
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
              "discord"
   ];
@@ -39,8 +49,11 @@ in {
         nodePackages.vercel
         gnome.gnome-tweaks
         gnomeExtensions.gtile
-
   ];
+
+
+  home.file.".config/alacritty/alacritty.yml".source = alacrittyConfig;
+
   
   home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
     ${cloneNvimConfig}

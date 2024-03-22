@@ -56,6 +56,7 @@ in {
         texliveFull
         feh
         cloc
+        busybox
   ];
 
 

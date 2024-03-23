@@ -1,0 +1,3 @@
+node-packages/node-packages.nix
+node-packages/default.nix
+node-packages/node-env.nix

@@ -19,6 +19,8 @@ let
         style: Regular
       size: 12.0
   '';
+
+  extraNodePackages = import ~/nixConfig/node-packages/default.nix {};
 in {
   programs.home-manager.enable = true;
 
@@ -57,6 +59,12 @@ in {
         feh
         cloc
         busybox
+
+        # Node Packages
+        extraNodePackages.solidity-ls
+        extraNodePackages.typescript
+        extraNodePackages.typescript-language-server
+        extraNodePackages.pyright
   ];
 
 

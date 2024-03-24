@@ -42,9 +42,9 @@ in {
 	steam
 	desktop-file-utils
 	ripgrep
-        alacritty
+        alacritty # Terminal
         gnome.dconf-editor
-        xclip
+        xclip # Clipboard
         nodejs
         slither-analyzer
         solc-select
@@ -52,13 +52,16 @@ in {
         gnome.gnome-tweaks
         gnomeExtensions.gtile
         python3
-        evince
-        mdcat
-        pandoc
+        mdcat # Markdown cat
+        feh # Image viewer
+        cloc # Sloc calculator
+        busybox # Web stuff
+
+        # PDF Stuff
+        chromium # Turn html to pdf
+        evince # Pdf viewer
+        pandoc 
         texliveFull
-        feh
-        cloc
-        busybox
 
         # Node Packages
         extraNodePackages.solidity-ls

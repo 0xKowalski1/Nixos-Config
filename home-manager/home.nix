@@ -39,7 +39,6 @@ in {
 	htop
 	discord
 	spotify
-	steam
 	desktop-file-utils
 	ripgrep
         alacritty # Terminal

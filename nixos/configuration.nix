@@ -109,14 +109,20 @@
   # Enable sound.
   sound.enable = true;
 
+  # Allow Docker
+  virtualisation.docker.enable = true;
+
   users.users.kowalski = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ 
+    	"wheel" # Sudo
+	"docker" 
+	]; 
     packages = with pkgs; [
     ];
   };
 
-  # DO NOT CHANGE
+# DO NOT CHANGE
   system.stateVersion = "23.11";
 }
 

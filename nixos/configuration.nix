@@ -112,6 +112,8 @@
   # Allow Docker
   virtualisation.docker.enable = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   users.users.kowalski = {
     isNormalUser = true;
     extraGroups = [ 

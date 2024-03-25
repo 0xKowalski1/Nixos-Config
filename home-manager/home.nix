@@ -56,6 +56,8 @@ in {
         feh # Image viewer
         cloc # Sloc calculator
         busybox # Web stuff
+        qemu # VM utils
+        go
 
         # PDF Stuff
         chromium # Turn html to pdf

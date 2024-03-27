@@ -27,6 +27,15 @@
   };
 
 
+  # Garbage Collection
+  nix.gc = {
+    automatic = true;
+    persistent = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+
   fonts.packages = with pkgs; [
   	(nerdfonts.override { fonts = [ "FiraCode"  ]; })
   ];

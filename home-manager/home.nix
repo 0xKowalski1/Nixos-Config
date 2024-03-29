@@ -58,6 +58,7 @@ in {
         busybox # Web stuff
         qemu # VM utils
         go
+        gopls # Go language server
 
         # PDF Stuff
         chromium # Turn html to pdf

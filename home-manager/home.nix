@@ -71,6 +71,7 @@ in {
         extraNodePackages.typescript
         extraNodePackages.typescript-language-server
         extraNodePackages.pyright
+        extraNodePackages.vscode-langservers-extracted
   ];
 
 

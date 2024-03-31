@@ -2,5 +2,6 @@
     "solidity-ls",
     "typescript",
     "typescript-language-server",
-    "pyright"
+    "pyright",
+    "vscode-langservers-extracted"
 ]

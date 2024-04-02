@@ -34,6 +34,11 @@ in {
   
   nixpkgs.config.allowUnfree = true;
 
+  programs.java = {
+  enable = true;
+  package = pkgs.openjdk17; # for minecraft
+};
+
   home.packages =  with pkgs; [
     docker
 	brave
@@ -66,7 +71,7 @@ in {
         pandoc 
         texliveFull
 
-        minecraft
+        prismlauncher # minecraft
 
         # Node Packages
         extraNodePackages.solidity-ls

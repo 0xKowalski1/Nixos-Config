@@ -66,6 +66,8 @@ in {
         pandoc 
         texliveFull
 
+        minecraft
+
         # Node Packages
         extraNodePackages.solidity-ls
         extraNodePackages.typescript

@@ -126,6 +126,10 @@
   # Allow Docker
   virtualisation.docker.enable = true;
 
+  virtualisation.containerd.enable = true;
+
+
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   users.users.kowalski = {

@@ -128,19 +128,18 @@
 
   virtualisation.containerd.enable = true;
 
-
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   users.users.kowalski = {
     isNormalUser = true;
     extraGroups = [ 
     	"wheel" # Sudo
-	"docker" 
+     	"docker" 
 	]; 
     packages = with pkgs; [
     ];
   };
+
 
 # DO NOT CHANGE
   system.stateVersion = "23.11";

@@ -64,6 +64,7 @@ in {
         qemu # VM utils
         go
         gopls # Go language server
+        etcd
 
         # PDF Stuff
         chromium # Turn html to pdf

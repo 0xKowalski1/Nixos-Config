@@ -65,6 +65,7 @@ in {
         go
         gopls # Go language server
         etcd
+        air # Go live dev server
 
         # PDF Stuff
         chromium # Turn html to pdf

@@ -20,6 +20,8 @@ let
       size: 12.0
   '';
 
+
+
   extraNodePackages = import ~/nixConfig/node-packages/default.nix {};
 in {
   programs.home-manager.enable = true;
@@ -60,7 +62,6 @@ in {
         mdcat # Markdown cat
         feh # Image viewer
         cloc # Sloc calculator
-        busybox # Web stuff
         qemu # VM utils
         go
         gopls # Go language server

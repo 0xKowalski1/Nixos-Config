@@ -123,10 +123,49 @@
   # Enable sound.
   sound.enable = true;
 
-  # Allow Docker
+  # Virt + Networking
+    environment.systemPackages = with pkgs; [
+    cni
+    cni-plugins
+    containerd
+    iptables
+  ];
+
   virtualisation.docker.enable = true;
 
   virtualisation.containerd.enable = true;
+
+ environment.etc."cni/net.d/10-mynet.conflist".text = ''
+ {
+  "cniVersion": "1.0.0",
+  "name": "mynet",
+  "plugins": [
+    {
+      "type": "bridge",
+      "bridge": "cni0",
+      "isGateway": true,
+      "ipMasq": true,
+      "ipam": {
+        "type": "host-local",
+        "subnet": "10.22.0.0/16",
+        "routes": [
+          { "dst": "0.0.0.0/0" }
+        ]
+      }
+    },
+    {
+      "type": "portmap",
+      "capabilities": {
+        "portMappings": true
+      },
+      "snat": true
+    }
+  ]
+}
+
+  '';
+
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

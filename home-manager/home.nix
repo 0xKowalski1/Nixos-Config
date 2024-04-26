@@ -110,6 +110,20 @@ in {
 
   programs.ssh = {
    enable = true;
+   extraConfig = ''
+      Host localhost
+        HostName localhost
+        Port 2222
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+        LogLevel ERROR
+    Host localhost
+        HostName localhost
+        Port 2223
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+        LogLevel ERROR
+    '';
   };
 
   dconf.settings = {

@@ -7,6 +7,7 @@
       <home-manager/nixos>
     ];
 
+ 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -123,6 +124,7 @@
   # Enable sound.
   sound.enable = true;
 
+
   # Virt + Networking
     environment.systemPackages = with pkgs; [
     cni
@@ -132,6 +134,9 @@
   ];
 
   virtualisation.docker.enable = true;
+   virtualisation.docker.extraOptions = ''
+    --insecure-registry 192.168.1.30:5000
+  '';
 
   virtualisation.containerd.enable = true;
 
@@ -165,6 +170,21 @@
 
   '';
 
+  ## Postgres dev
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_16;  # Choose the version of PostgreSQL
+    ensureDatabases = [ "hosting" ];
+    ensureUsers = [
+     {
+        name = "hosting";
+        ensureDBOwnership = true;
+      }
+    ];
+    initialScript = pkgs.writeText "setup.sql" ''
+      ALTER USER hosting WITH PASSWORD 'password';
+    '';
+  };
 
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -178,6 +198,8 @@
     packages = with pkgs; [
     ];
   };
+
+
 
 
 # DO NOT CHANGE

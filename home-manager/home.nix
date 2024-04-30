@@ -38,7 +38,7 @@ in {
 
   programs.java = {
   enable = true;
-  package = pkgs.openjdk17; # for minecraft
+  package = pkgs.openjdk21; # for minecraft
 };
 
   home.packages =  with pkgs; [

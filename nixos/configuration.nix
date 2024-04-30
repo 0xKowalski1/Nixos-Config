@@ -199,9 +199,6 @@
     ];
   };
 
-
-
-
 # DO NOT CHANGE
   system.stateVersion = "23.11";
 }

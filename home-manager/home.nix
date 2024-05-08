@@ -224,9 +224,44 @@ in {
 
 
         };
+
+        bars = [
+        {
+            position = "bottom";
+            statusCommand = "${pkgs.i3blocks}/bin/i3blocks -c $HOME/.config/i3blocks/config";
+        }
+        ];
       }; 
   };
 
+ home.file.".config/i3blocks/config".text = ''
+# Global settings
+separator_block_width=10
+markup=pango
+
+# Time and date
+[time]
+command=date '+%H:%M %a %d-%m-%Y'
+interval=30
+
+# CPU usage
+[cpu_usage]
+command=sh -c "top -bn1 | awk '/^%Cpu/ {print \$2}'"
+interval=5
+color=#8EC07C
+
+# Memory usage
+[memory]
+command=free -h | awk '/^Mem:/ {print $3 " / " $2}'
+interval=10
+color=#81A1C1
+
+# Volume
+[volume]
+command=amixer get Master | awk -F'[][]' '/%/{print "Vol: "$2}'
+interval=once
+color=#B48EAD
+  '';
 
  
   # DONT CHANGE

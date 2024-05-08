@@ -49,7 +49,8 @@
         i3 = {
             enable = true;
             extraPackages = with pkgs; [
-                dmenu
+                dmenu 
+                i3blocks
             ];
         };
     };

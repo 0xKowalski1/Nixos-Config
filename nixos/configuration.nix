@@ -44,11 +44,7 @@
   # Enable the X11 windowing system.  
   services.xserver = {
     enable = true;
-    # Disable mouse acceleration
-    displayManager.sessionCommands = lib.mkBefore ''
-      xinput --set-prop "Virtual Core Pointer" "libinput Accel Profile Enabled" 0, 1
-      xinput --set-prop "Virtual Core Pointer" "libinput Accel Speed" -1
-    '';
+
     windowManager = {
         i3 = {
             enable = true;
@@ -57,6 +53,8 @@
             ];
         };
     };
+
+
   };
   
   # Autologin
@@ -79,7 +77,7 @@
   };
 
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "intel" ];
   nixpkgs.config.allowUnfree = true;
 
   hardware.nvidia = {
@@ -110,7 +108,7 @@
     cni-plugins
     containerd
     iptables
-  ];
+    ];
 
   virtualisation.docker.enable = true;
    virtualisation.docker.extraOptions = ''

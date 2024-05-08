@@ -21,8 +21,20 @@ let
   '';
   extraNodePackages = import ~/nixConfig/node-packages/default.nix {}; 
 
+  primaryMonitor = "HDMI-1-0";
+  secondaryMonitor = "HDMI2";
   mod = "Mod4";
   terminal = "alacritty";
+  ws1 = "1: Browser";
+  ws2 = "2";
+  ws3 = "3";
+  ws4 = "4";
+  ws5 = "5";
+  ws6 = "6: Main";
+  ws7 = "7";
+  ws8 = "8";
+  ws9 = "9";
+  ws0 = "0";
 in {
   programs.home-manager.enable = true;
 
@@ -129,10 +141,20 @@ in {
   # I3
   xsession.windowManager.i3 = {
       enable = true;
+      
+      extraConfig = ''
+        exec --no-startup-id xrandr --output ${primaryMonitor} --primary --auto --output ${secondaryMonitor} --left-of ${primaryMonitor} --auto
+
+        exec --no-startup-id i3-msg 'workspace ${ws1}; exec brave'
+        exec --no-startup-id i3-msg 'workspace ${ws6}; exec alacritty'
+      ''; 
+
       config = {
         terminal=terminal;
         
         modifier = mod;
+         
+        defaultWorkspace = "${ws1}";
 
         keybindings = {
             # Basic Window Management
@@ -159,28 +181,30 @@ in {
 
             "${mod}+r" = "restart";
 
-            # Workspaces
-            "${mod}+1" = "workspace 1";
-            "${mod}+2" = "workspace 2";
-            "${mod}+3" = "workspace 3";
-            "${mod}+4" = "workspace 4";
-            "${mod}+5" = "workspace 5";
-            "${mod}+6" = "workspace 6";
-            "${mod}+7" = "workspace 7";
-            "${mod}+8" = "workspace 8";
-            "${mod}+9" = "workspace 9";
-            "${mod}+0" = "workspace 0";
+# Workspaces
+"${mod}+1" = "workspace ${ws1}; move workspace to output ${secondaryMonitor}";
+"${mod}+2" = "workspace ${ws2}; move workspace to output ${secondaryMonitor}";
+"${mod}+3" = "workspace ${ws3}; move workspace to output ${secondaryMonitor}";
+"${mod}+4" = "workspace ${ws4}; move workspace to output ${secondaryMonitor}";
+"${mod}+5" = "workspace ${ws5}; move workspace to output ${secondaryMonitor}";
+"${mod}+6" = "workspace ${ws6}; move workspace to output ${primaryMonitor}";
+"${mod}+7" = "workspace ${ws7}; move workspace to output ${primaryMonitor}";
+"${mod}+8" = "workspace ${ws8}; move workspace to output ${primaryMonitor}";
+"${mod}+9" = "workspace ${ws9}; move workspace to output ${primaryMonitor}";
+"${mod}+0" = "workspace ${ws0}; move workspace to output ${primaryMonitor}";
 
-            "${mod}+Shift+1" = "move container to workspace 1";
-            "${mod}+Shift+2" = "move container to workspace 2";
-            "${mod}+Shift+3" = "move container to workspace 3";
-            "${mod}+Shift+4" = "move container to workspace 4";
-            "${mod}+Shift+5" = "move container to workspace 5";
-            "${mod}+Shift+6" = "move container to workspace 6";
-            "${mod}+Shift+7" = "move container to workspace 7";
-            "${mod}+Shift+8" = "move container to workspace 8";
-            "${mod}+Shift+9" = "move container to workspace 9";
-            "${mod}+Shift+0" = "move container to workspace 0";
+"${mod}+Shift+1" = "move container to workspace ${ws1}; workspace ${ws1}; move workspace to output ${secondaryMonitor}";
+"${mod}+Shift+2" = "move container to workspace ${ws2}; workspace ${ws2}; move workspace to output ${secondaryMonitor}";
+"${mod}+Shift+3" = "move container to workspace ${ws3}; workspace ${ws3}; move workspace to output ${secondaryMonitor}";
+"${mod}+Shift+4" = "move container to workspace ${ws4}; workspace ${ws4}; move workspace to output ${secondaryMonitor}";
+"${mod}+Shift+5" = "move container to workspace ${ws5}; workspace ${ws5}; move workspace to output ${secondaryMonitor}";
+"${mod}+Shift+6" = "move container to workspace ${ws6}; workspace ${ws6}; move workspace to output ${primaryMonitor}";
+"${mod}+Shift+7" = "move container to workspace ${ws7}; workspace ${ws7}; move workspace to output ${primaryMonitor}";
+"${mod}+Shift+8" = "move container to workspace ${ws8}; workspace ${ws8}; move workspace to output ${primaryMonitor}";
+"${mod}+Shift+9" = "move container to workspace ${ws9}; workspace ${ws9}; move workspace to output ${primaryMonitor}";
+"${mod}+Shift+0" = "move container to workspace ${ws0}; workspace ${ws0}; move workspace to output ${primaryMonitor}";
+
+
         };
       }; 
   };

@@ -49,12 +49,16 @@
       xinput --set-prop "Virtual Core Pointer" "libinput Accel Profile Enabled" 0, 1
       xinput --set-prop "Virtual Core Pointer" "libinput Accel Speed" -1
     '';
+    windowManager = {
+        i3 = {
+            enable = true;
+            extraPackages = with pkgs; [
+                dmenu
+            ];
+        };
+    };
   };
   
-  # Gnome
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Autologin
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "kowalski";
@@ -62,32 +66,7 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  # Bin off all the gnome bloat
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    gedit # text editor
-    epiphany # web browser
-    geary # email reader
-    evince # document viewer
-    gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-    gnome-weather
-    gnome-calendar
-    gnome-contacts
-    gnome-maps
-    simple-scan
-    yelp
-    gnome-clocks
-  ]);
-
+ 
   # GPU
   hardware.opengl = {
     enable = true;
@@ -198,6 +177,7 @@
     packages = with pkgs; [
     ];
   };
+
 
 # DO NOT CHANGE
   system.stateVersion = "23.11";

@@ -4,7 +4,7 @@
 let
    gitPath = "${pkgs.git}/bin";
    sshPath = "${pkgs.openssh}/bin";   
-   
+      
    cloneNvimConfig = pkgs.writeShellScript "cloneNvimConfig" ''
     export PATH=${gitPath}:${sshPath}:$PATH 
     if [ ! -d /home/kowalski/Nvim-Config ]; then
@@ -19,10 +19,10 @@ let
         style: Regular
       size: 12.0
   '';
+  extraNodePackages = import ~/nixConfig/node-packages/default.nix {}; 
 
-
-
-  extraNodePackages = import ~/nixConfig/node-packages/default.nix {};
+  mod = "Mod4";
+  terminal = "alacritty";
 in {
   programs.home-manager.enable = true;
 
@@ -126,47 +126,66 @@ in {
     '';
   };
 
-  dconf.settings = {
-      "org/gnome/shell" = {
-            favorite-apps = ["discord.desktop" 
-            "spotify.desktop"
-            "brave-browser.desktop"
-            "Alacritty.desktop"];
-          };
-     "org/gnome/shell/extensions/hidetopbar" = {
-        enable-active-window = false;
-        enable-intellihide = false; 
-      };
-      "org/gnome/desktop/interface" = {
-        clock-show-seconds = false;
-        clock-show-weekday = false;
-        color-scheme = "prefer-dark";
-        enable-hot-corners = false;
-        font-antialiasing = "grayscale";
-        font-hinting = "slight";
-        gtk-theme = "Nordic";
-        toolkit-accessibility = false;
-      };
+  # I3
+  xsession.windowManager.i3 = {
+      enable = true;
+      config = {
+        terminal=terminal;
+        
+        modifier = mod;
 
-      "org/gnome/desktop/wm/keybindings" = {
-          toggle-fullscreen = ["f11"];
-      };
+        keybindings = {
+            # Basic Window Management
+            "${mod}+Return" = "exec ${terminal}";
+            "${mod}+space" = "exec dmenu_run";
+            "${mod}+Escape" = "kill";
 
-      "org/gnome/desktop/session" = {
-          idle-delay = 0;
-      };
+            # Change Focus Between Windows
+            "${mod}+Left" = "focus left";
+            "${mod}+Right" = "focus right";
+            "${mod}+Up" = "focus up";
+            "${mod}+Down" = "focus down";
 
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        custom-keybindings = [
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        ];
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        name = "Open Terminal";
-        command = "alacritty";
-        binding = "<Ctrl><Alt>t";
-      };
+            # Move Windows
+            "${mod}+Shift+Left" = "move left";
+            "${mod}+Shift+Right" = "move right";
+            "${mod}+Shift+Up" = "move up";
+            "${mod}+Shift+Down" = "move down";
+            
+            "${mod}+h" = "split h";
+            "${mod}+v" = "split v";
+
+            "${mod}+F11" = "fullscreen toggle";
+
+            "${mod}+r" = "restart";
+
+            # Workspaces
+            "${mod}+1" = "workspace 1";
+            "${mod}+2" = "workspace 2";
+            "${mod}+3" = "workspace 3";
+            "${mod}+4" = "workspace 4";
+            "${mod}+5" = "workspace 5";
+            "${mod}+6" = "workspace 6";
+            "${mod}+7" = "workspace 7";
+            "${mod}+8" = "workspace 8";
+            "${mod}+9" = "workspace 9";
+            "${mod}+0" = "workspace 0";
+
+            "${mod}+Shift+1" = "move container to workspace 1";
+            "${mod}+Shift+2" = "move container to workspace 2";
+            "${mod}+Shift+3" = "move container to workspace 3";
+            "${mod}+Shift+4" = "move container to workspace 4";
+            "${mod}+Shift+5" = "move container to workspace 5";
+            "${mod}+Shift+6" = "move container to workspace 6";
+            "${mod}+Shift+7" = "move container to workspace 7";
+            "${mod}+Shift+8" = "move container to workspace 8";
+            "${mod}+Shift+9" = "move container to workspace 9";
+            "${mod}+Shift+0" = "move container to workspace 0";
+        };
+      }; 
   };
+
+
  
   # DONT CHANGE
   home.stateVersion = "23.11";

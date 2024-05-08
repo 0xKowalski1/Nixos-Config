@@ -100,7 +100,15 @@
 
   # Enable sound.
   sound.enable = true;
+security.rtkit.enable = true;
 
+services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+  jack.enable = false;
+};
 
   # Virt + Networking
     environment.systemPackages = with pkgs; [

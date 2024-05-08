@@ -25,12 +25,12 @@ let
   secondaryMonitor = "HDMI2";
   mod = "Mod4";
   terminal = "alacritty";
-  ws1 = "1: Browser";
-  ws2 = "2";
-  ws3 = "3";
+  ws1 = "Browser";
+  ws2 = "Discord";
+  ws3 = "Spotify";
   ws4 = "4";
   ws5 = "5";
-  ws6 = "6: Main";
+  ws6 = "Main";
   ws7 = "7";
   ws8 = "8";
   ws9 = "9";
@@ -145,8 +145,26 @@ in {
       extraConfig = ''
         exec --no-startup-id xrandr --output ${primaryMonitor} --primary --auto --output ${secondaryMonitor} --left-of ${primaryMonitor} --auto
 
-        exec --no-startup-id i3-msg 'workspace ${ws1}; exec brave'
-        exec --no-startup-id i3-msg 'workspace ${ws6}; exec alacritty'
+  # Assign workspaces to monitors
+  workspace ${ws1} output ${secondaryMonitor}
+  workspace ${ws2} output ${secondaryMonitor}
+  workspace ${ws3} output ${secondaryMonitor}
+  workspace ${ws4} output ${secondaryMonitor}
+  workspace ${ws5} output ${secondaryMonitor}
+  workspace ${ws6} output ${primaryMonitor}
+  workspace ${ws7} output ${primaryMonitor}
+  workspace ${ws8} output ${primaryMonitor}
+  workspace ${ws9} output ${primaryMonitor}
+  workspace ${ws0} output ${primaryMonitor}
+
+  # Launch applications in specific workspaces
+  assign [class="Brave-browser"] ${ws1}
+  assign [class="discord"] ${ws2}
+  assign [class="Spotify"] ${ws3}
+  exec --no-startup-id i3-msg 'exec brave'
+  exec --no-startup-id i3-msg 'exec discord'
+  exec --no-startup-id i3-msg 'exec spotify'
+  exec --no-startup-id i3-msg 'workspace ${ws6}; exec alacritty'
       ''; 
 
       config = {
@@ -154,7 +172,7 @@ in {
         
         modifier = mod;
          
-        defaultWorkspace = "${ws1}";
+        defaultWorkspace = "${ws6}";
 
         keybindings = {
             # Basic Window Management

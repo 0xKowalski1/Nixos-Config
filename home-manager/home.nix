@@ -62,7 +62,6 @@ in {
 	desktop-file-utils
 	ripgrep
         alacritty # Terminal
-        gnome.dconf-editor
         xclip # Clipboard
         nodejs
         slither-analyzer
@@ -96,11 +95,12 @@ in {
         extraNodePackages.vscode-langservers-extracted
   ];
 
+ programs.bash = {
+    enable = true;
+ };
+ home.file.".config/alacritty/alacritty.yml".source = alacrittyConfig;
 
-  home.file.".config/alacritty/alacritty.yml".source = alacrittyConfig;
-
-  
-  home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
     ${cloneNvimConfig}
   '';
 

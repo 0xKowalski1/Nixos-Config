@@ -235,32 +235,35 @@ in {
   };
 
  home.file.".config/i3blocks/config".text = ''
-# Global settings
-separator_block_width=10
+# Global properties
+separator=true
+separator_block_width=15
 markup=pango
 
-# Time and date
+# Time and Date
 [time]
-command=date '+%H:%M %a %d-%m-%Y'
-interval=30
+label=🕒
+command=date '+%Y-%m-%d %H:%M'
+interval=5
 
 # CPU usage
 [cpu_usage]
-command=sh -c "top -bn1 | awk '/^%Cpu/ {print \$2}'"
-interval=5
-color=#8EC07C
+label=💻
+command=top -bn2 | grep "Cpu(s)" | tail -n 1 | awk '{print $2+$4 "%"}'
+interval=10
 
 # Memory usage
 [memory]
-command=free -h | awk '/^Mem:/ {print $3 " / " $2}'
+label=🔍
+command=free -h | awk '/^Mem:/ {print $3 "/" $2}'
 interval=10
-color=#81A1C1
 
-# Volume
+# Volume control
 [volume]
-command=amixer get Master | awk -F'[][]' '/%/{print "Vol: "$2}'
+label=🔊
+command=amixer get Master | grep 'Left:' | awk -F'[][]' '{ print $2 }'
 interval=once
-color=#B48EAD
+signal=10
   '';
 
  

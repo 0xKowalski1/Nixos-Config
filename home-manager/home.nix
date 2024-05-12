@@ -95,6 +95,8 @@ in {
         extraNodePackages.vscode-langservers-extracted
   ];
 
+
+
  programs.bash = {
     enable = true;
  };
@@ -143,6 +145,7 @@ home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
       enable = true;
       
       extraConfig = ''
+      focus_follows_mouse no
         exec --no-startup-id xrandr --output ${primaryMonitor} --primary --auto --output ${secondaryMonitor} --left-of ${primaryMonitor} --auto
 
   # Assign workspaces to monitors

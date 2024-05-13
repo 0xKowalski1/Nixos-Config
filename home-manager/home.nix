@@ -168,6 +168,12 @@ home.activation.cloneNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
   exec --no-startup-id i3-msg 'exec discord'
   exec --no-startup-id i3-msg 'exec spotify'
   exec --no-startup-id i3-msg 'workspace ${ws6}; exec alacritty'
+
+
+  # Remove window borders and titles
+new_window none
+new_float none
+for_window [class=".*"] border pixel
       ''; 
 
       config = {
